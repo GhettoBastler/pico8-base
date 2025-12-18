@@ -2,12 +2,10 @@
 PICO8 = /usr/bin/pico8
 # Name of the cart
 NAME = cartname
-# Interface to use for the webserver
-IFACE = wlan0
 
 CART = main.p8
-OPTIONS = -root_path src
-IP = $(shell ip addr show $(IFACE) | grep 'inet ' | sed 's/\s\+inet \([^/ ]\+\).*/\1/g')
+OPTIONS = -windowed 1 -root_path src -desktop capture
+ITCH_USER = ghettobastler
 
 clean_web:
 	rm -rf export/web
@@ -22,23 +20,25 @@ clean_png:
 	mkdir -p export/png
 
 .ONESHELL:
-web: clean_web
+web: clean_web version_file
 	${PICO8} ${OPTIONS} src/${CART} -export "-f export/web/${NAME}.html"
 	cd export/web
 	zip -9 -r ${NAME}.zip ${NAME}_html
 
-bin: clean_bin
+bin: clean_bin version_file
 	${PICO8} ${OPTIONS} src/${CART} -export "-f export/bin/${NAME}.bin"
 
-png: clean_png
+png: clean_png version_file
 	${PICO8} ${OPTIONS} src/${CART} -export "-f export/png/${NAME}.p8.png"
 
 run:
 	${PICO8} ${OPTIONS} -run src/${CART}
 
-.ONESHELL:
-serve: web
-	cd export/web/${NAME}_html
-	segno http://$(IP):8000 && python -m http.server
+push: web
+	butler push export/web/${NAME}.zip ${ITCH_USER}/${NAME}:html --userversion-file VERSION
 
-.PHONY: clean_web clean_bin clean_png serve run
+version_file:
+	sed -nE 's/VERSION = "([^"]+)"/\1/p' src/${CART} > VERSION
+
+
+.PHONY: clean_web clean_bin clean_png serve run push
