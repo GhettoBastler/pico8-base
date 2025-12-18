@@ -2,7 +2,9 @@ pico-8 cartridge // http://www.pico-8.com
 version 42
 __lua__
 -- cartname
--- author
+-- ghettobastler
+
+VERSION = 0.0.1
 
 function _init()
     -- disable keyboard retrigger
