@@ -4,7 +4,7 @@ __lua__
 -- cartname
 -- ghettobastler
 
-VERSION = 0.0.1
+VERSION = "0.0.1"
 
 function _init()
     -- disable keyboard retrigger
