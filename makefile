@@ -1,5 +1,5 @@
 # Path to PICO-8 binary
-PROJECT_NAME = cartname
+PROJECT_NAME = my_game
 
 # PICO8 variables
 PICO8 = /usr/bin/pico8
@@ -8,7 +8,7 @@ OPTIONS = -windowed 1 -root_path src -desktop capture
 
 # Butler variables
 ITCH_USER = ghettobastler
-ITCH_PROJECT = cartname
+ITCH_PROJECT = test_zone
 
 clean_web:
 	rm -rf export/web
