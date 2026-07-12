@@ -9,6 +9,7 @@ DEBUG = false
 
 #include utils.p8
 #include object.p8
+#include particle.p8
 #include scene.p8
 #include game_scene.p8
 
