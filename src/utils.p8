@@ -71,13 +71,14 @@ function lerp(value, target, ratio, threshold)
     end
 end
 
+
 function vlerp(value, target, ratio)
     return vec(lerp(value.x, target.x, ratio), lerp(value.y, target.y, ratio))
 end
 
 
-function vcpy(v)
-    return vec(v.x, v.y)
+function taxicab(vec)
+    return abs(vec.x)+abs(vec.y)
 end
 
 
@@ -120,9 +121,4 @@ end
 function restore_palettes(address)
     -- restore draw and screen palettes from memory
     memcpy(0x5f00, address or 0x8000, 0x1f)
-end
-
-
-function taxicab(vec)
-    return abs(vec.x)+abs(vec.y)
 end

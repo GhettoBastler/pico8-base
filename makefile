@@ -8,7 +8,7 @@ OPTIONS = -windowed 1 -root_path src -desktop capture
 
 # Butler variables
 ITCH_USER = ghettobastler
-ITCH_PROJECT = test_zone
+ITCH_PROJECT = private_test_zone
 
 clean_web:
 	rm -rf export/web
